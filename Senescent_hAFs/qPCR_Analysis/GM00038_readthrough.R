@@ -172,3 +172,9 @@ yplot <- res_GAPDH |>
   summarise(y = max(RQ, na.rm = TRUE) * 1.1)
 
 pvals <- left_join(pvals, yplot, by = "Target")
+pvals$signif <- dplyr::case_when(
+  pvals$p < 0.001 ~ "***",
+  pvals$p < 0.01  ~ "**",
+  pvals$p < 0.05  ~ "*",
+  TRUE            ~ "ns"
+)
