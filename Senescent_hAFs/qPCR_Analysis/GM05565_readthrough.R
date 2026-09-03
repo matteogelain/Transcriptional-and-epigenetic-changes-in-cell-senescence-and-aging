@@ -5,15 +5,12 @@ require('ggplot2')
 require('ggh4x')
 require('readr')
 
-#20260722 Histone analysis GM05565 senescent vs proliferative  aberrant polyadenilation#
+# 20260722 Histone analysis GM05565 senescent vs proliferative  aberrant polyadenilation #
 
 # Read file, and modify column containing senescent and proliferative, by eliminating
 # the number of the sample
 data <- fread("20260722_Cq_GM5565_Hist_Prol_Sen_Aberrant_H3.csv") |>
-  mutate(
-    Condition = ifelse(grepl("Prol", Sample), "Prol", "Sen"),
-    Cq = as.numeric(Cq)
-  )
+  mutate(Condition = ifelse(grepl("Prol", Sample), "Prol", "Sen"), Cq = as.numeric(Cq))
 
 dt_path <- '20260722_Cq_GM5565_Hist_Prol_Sen_Aberrant_H3.csv'
 control <- 'Prol'
@@ -44,30 +41,15 @@ if (filt_outlier == T) {
   ]
   
   outlier_context <- data |>
-    mutate(
-      outlier = ifelse(
-        data$`Well Position` %in% outliers$`Well Position`, T, F
-      )
-    )
+    mutate(outlier = ifelse(data$`Well Position` %in% outliers$`Well Position`, T, F))
   
-  write.csv(
-    outlier_context,
-    paste0(
-      out_path,
-      gsub('_.*', '', basename(dt_path)),
-      '_qPCR_outliers.csv'
-    )
-  )
+  write.csv(outlier_context, paste0(out_path, gsub('_.*', '', basename(dt_path)), '_qPCR_outliers.csv'))
   
   # Calculate mean Cq for each Sample and Target
   data_noNA <- clean_data |>
     filter(!is.na(Cq)) |>
     group_by(Sample, Target) |>
-    summarise(
-      Condition = unique(Condition),
-      Cq = mean(Cq),
-      .groups = "drop"
-    )
+    summarise(Condition = unique(Condition), Cq = mean(Cq), .groups = "drop")
   
 } else {
   
