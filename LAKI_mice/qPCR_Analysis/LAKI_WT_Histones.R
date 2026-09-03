@@ -3,7 +3,7 @@ require('dplyr')
 require('data.table')
 require('ggplot2')
 
-### 20260421 LAKI histones liver and kidney ####
+### 20260421 LAKI histones liver ####
 
 # Separate tissues: liver and kidney
 res <- fread('20260421_LAKI_liver_kidney_hist_Matteo_Results_20260422_132441.csv') |>  
@@ -42,7 +42,6 @@ T_t <- by(res_18S, res_18S$Target, \(df) t.test(dCq ~ Condition, data = df, var.
 pvals <- data.frame(Target = names(T_t), p = sapply(T_t, \(x) x$p.value))
 
 # plot the results
-
 yplot <- res_18S |> 
   group_by(Target) |> 
   summarise(y = max(RQ, na.rm = TRUE) * 1.1)
