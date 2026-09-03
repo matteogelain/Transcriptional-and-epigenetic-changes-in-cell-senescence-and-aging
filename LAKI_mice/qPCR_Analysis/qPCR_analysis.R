@@ -4,18 +4,11 @@ require('data.table')
 require('readr')
 
 #load results
-
   data <- fread(dt_path) |>
     mutate(Condition = gsub(pattern, '', Sample))
   data$Cq <- as.numeric(data$Cq)
 
-# meta <- read.xlsx(gsub('.csv','_meta.xlsx',dt_path))
-# colnames(meta) <- c('Well Position', 'Condition', 'sample')
-# data <- left_join(data, meta, by = 'Well Position') |>
-#   dplyr:::select(`Well Position`, Target, Condition, sample, Cq)
-
 #eliminate outliers if wanted
-
 if(filt_outlier == T){
   clean_data <- qpcr_clean(data, cq = Cq, threshold = threshold, Target, Sample, Condition)
   #check the eliminated values
