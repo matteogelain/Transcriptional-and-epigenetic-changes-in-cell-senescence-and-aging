@@ -2,8 +2,6 @@
 ############################## DESeq Analysis ##################################
 #///////////////////////////////////////////////////////////////////////////////
 
-setwd('/home/antotartier/data/20231017_RNASeq_LAKI/')
-
 # Variables
 out_path <- 'results/transposons/subfamily/'
 out_object <- 'R_files/transposons/subfamily/'
