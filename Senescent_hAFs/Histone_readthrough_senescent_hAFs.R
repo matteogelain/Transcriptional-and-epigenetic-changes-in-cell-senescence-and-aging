@@ -4,8 +4,6 @@
 
 # Some studies have described aberrant polyadenylation of histones as a driver of their downregulation both at RNA and protein level. However, the specific role of this process in cellular senescence remains unknown. To this end, we will analyze histone readthrough as an indirect measure of this phenomenom in RNAseq data from senescent human fibroblasts.
 
-setwd('/data/antotartier/fib_senescent_RNAseq')
-
 # Libraries
 require(GenomicAlignments)
 require(GenomicRanges)
