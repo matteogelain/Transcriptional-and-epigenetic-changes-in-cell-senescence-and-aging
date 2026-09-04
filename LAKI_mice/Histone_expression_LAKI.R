@@ -2,8 +2,6 @@
 ###################### Histone Expression Analysis #############################
 #///////////////////////////////////////////////////////////////////////////////
 
-setwd('/home/antotartier/data/20231017_RNASeq_LAKI/')
-
 # Variables
 out_path <- 'results/histones/'
 out_object <- 'R_files/histones/'
